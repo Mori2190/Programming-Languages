@@ -1,41 +1,29 @@
 ! This is a Fortran Tutorial file located at: https://fortran-lang.org/en/learn/quickstart/
 ! It's time to learn to use Floating-point Precision in Fortran
-! The usual set of arithmetic operators are available, listed in order of precedence:
-! Operator  Description
-!   **       Exponent
-!   *        Multiplication
-!   /        Division
-!   +        Addition
-!   -        Subtraction
+! The desired floating-point precision can be explicitly declared using a kind parameter.
+! The iso_fortran_env intrinsic module provides kind parameters for the common 32-bit and 64-bit floating-point types.
 
-program arithmetic ! Start of arithmetic program
+program float ! Start of explicit real 'kind'
   ! Declare Variables
+  use, intrinsic :: iso_fortran_env, only: sp=>real32, dp=>real64
   implicit none
-  real :: pi
-  real :: radius
-  real :: height
-  real :: area
-  real :: volume
+  real(sp) :: float32
+  real(dp) :: float64
+  
   ! Define Variables
-  pi = 3.1415927
+  float32 = 1.0_sp ! Explicit suffix for literal constants
+  float64 = 1.0_dp
+  
+end program float
 
-  ! Collect cylinder information
-  print *, 'Enter cylinder base radius:'
-  read(*,*) radius
-
-  print *, 'Enter cylinder height:'
-  read(*,*) height
-
-  ! Run calculations
-  area = pi * radius**2
-  volume = area * height
-
-  ! Print results to stdout
-  print *, 'Cylinder radius is: ', radius
-  print *, 'Cylinder height is: ', height
-  print *, 'Cylinder base area is: ', area
-  print *, 'Cylinder volume is: ', volume
-
-end program arithmetic ! End of arithmetic program
-
-! Save this file as expressions.f90 and run it in the compiler by; gfortran expressions.f90 -o expressions
+program float ! C-interoperable 'kind'
+   ! Declare Variables
+   use, intrinsic :: iso_c_binding, only: sp=>c_float, dp=>c_double
+   implicit none
+   
+   !Define Variables
+   real(sp) :: float32
+   real(dp) :: float64
+   
+end program float
+! Save this file as floating-point.f90 and run it in the compiler by; gfortran floating-point.f90 -o floating-point
