@@ -1,2 +1,2 @@
 # Programming Languages
- Repository for exploration and documentation of learning programming.
+ Repository for exploration and documentation of learning programming languages and skills.
